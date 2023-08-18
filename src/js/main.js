@@ -4,8 +4,8 @@ let validate = (f, l) => {
 	let floorVal = document.getElementsByClassName('floorInput')[0].value;
 	let liftVal = document.getElementsByClassName('liftInput')[0].value;
 
-	if (floorVal < 3 || liftVal < 3 || floorVal > 10 || liftVal > 10) {
-		alert('Floor and Lifts should be in the range (3, 10)');
+	if (floorVal < 3 || liftVal < 3 || floorVal > 9 || liftVal > 9) {
+		alert('Floor and Lifts should be in the range (3, 9), either floor or lift input is not valid');
 		return false;
 	} else if (liftVal > floorVal) alert('Lifts should be less than Floors');
 	else

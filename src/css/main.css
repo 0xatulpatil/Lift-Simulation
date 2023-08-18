@@ -45,12 +45,12 @@ body {
 .btnDiv{
 	display: flex;
 	flex-direction: column;
-	width: 45px;
 }
 .lifts{
 	display: flex;
 	justify-content: space-evenly;
 	width: auto;
+	margin-left: 45px;
 	/* transition: 1s ease-in-out; */
 }
 .lift{
