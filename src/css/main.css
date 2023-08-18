@@ -24,7 +24,6 @@ body {
 	width: 100%;
 }
 .lif-container{
-	position: absolute;
 }
 .floor{
 	display: flex;
@@ -35,7 +34,7 @@ body {
 }
 #btn{
 	text-decoration: none;
-	border: 1px solid red;
+	border: 1px solid green;
 	padding: 10px;
 	border-radius: 5px;
 	width: auto;
@@ -46,5 +45,22 @@ body {
 .btnDiv{
 	display: flex;
 	flex-direction: column;
+}
+.lifts{
+	display: flex;
+	justify-content: space-evenly;
+	/* transition: 1s ease-in-out; */
+}
+.lift{
+	height: 80px;
+	width: 60px;
+	border: 5px solid red;
+	margin-top: -80px;
+	overflow: hidden;
+}
+.liftDoor{
+	background-color: gray;
+	height: 100%;
+	width: 100%;
 }
 
