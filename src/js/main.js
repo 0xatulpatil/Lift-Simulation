@@ -1,9 +1,8 @@
-let floorVal, liftVal;
 let taskQ = [];
 
 let validate = (f, l) => {
-	floorVal = document.getElementsByClassName('floorInput')[0].value;
-	liftVal = document.getElementsByClassName('liftInput')[0].value;
+	let floorVal = document.getElementsByClassName('floorInput')[0].value;
+	let liftVal = document.getElementsByClassName('liftInput')[0].value;
 
 	if (floorVal < 3 || liftVal < 3 || floorVal > 10 || liftVal > 10) {
 		alert('Floor and Lifts should be in the range (3, 10)');
@@ -13,10 +12,26 @@ let validate = (f, l) => {
 	buildLayout(floorVal, liftVal);
 };
 
+let reset = () =>{
+	document.getElementsByClassName('title')[0].style.display = 'block';
+	document.getElementsByClassName('form')[0].style.display = 'block';
+	document.getElementsByClassName('simulation')[0].style.display = 'none';
+	document.getElementsByClassName('backBtn')[0].style.display = 'none';
+
+	let input1 = document.getElementsByClassName('floorInput')[0];
+	let input2 = document.getElementsByClassName('liftInput')[0];
+	input1.value = '';
+	input2.value = ''; 
+	
+	document.getElementsByClassName('floor-container')[0].innerHTML = "";
+	document.getElementsByClassName('lift-container')[0].innerHTML = "";
+}
+
 let buildLayout = (floor, lift) => {
 	document.getElementsByClassName('title')[0].style.display = 'none';
 	document.getElementsByClassName('form')[0].style.display = 'none';
 	document.getElementsByClassName('simulation')[0].style.display = 'block';
+	document.getElementsByClassName('backBtn')[0].style.display = 'block';
 
 	// creating floors
 	let floorContainer = document.getElementsByClassName('floor-container')[0];

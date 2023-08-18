@@ -45,15 +45,17 @@ body {
 .btnDiv{
 	display: flex;
 	flex-direction: column;
+	width: 45px;
 }
 .lifts{
 	display: flex;
 	justify-content: space-evenly;
+	width: auto;
 	/* transition: 1s ease-in-out; */
 }
 .lift{
 	height: 80px;
-	width: 60px;
+	width: 40px;
 	border: 5px solid red;
 	margin-top: -80px;
 	overflow: hidden;
@@ -62,5 +64,12 @@ body {
 	background-color: gray;
 	height: 100%;
 	width: 100%;
+}
+.backBtn{
+	display: none;
+	border: 1px solid blue;
+	padding: 10px;
+	margin: 10px;
+	background-color: inherit;
 }
 
