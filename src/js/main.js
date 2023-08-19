@@ -1,15 +1,16 @@
 let taskQ = [];
 
-let validate = (f, l) => {
+let validate = ( ) => {
 	let floorVal = document.getElementsByClassName('floorInput')[0].value;
 	let liftVal = document.getElementsByClassName('liftInput')[0].value;
 
-	if (floorVal < 3 || liftVal < 3 || floorVal > 9 || liftVal > 9) {
-		alert('Floor and Lifts should be in the range (3, 9), either floor or lift input is not valid');
+	if (floorVal < 3 || liftVal < 3 || floorVal > 7 || liftVal > 7) {
+		alert(
+			'Floor and Lifts should be in the range (3, 7), either floor or lift input is not valid',
+		);
 		return false;
 	} else if (liftVal > floorVal) alert('Lifts should be less than Floors');
-	else
-		buildLayout(floorVal, liftVal);
+	else buildLayout(floorVal, liftVal);
 };
 
 let reset = () => {
@@ -23,9 +24,9 @@ let reset = () => {
 	input1.value = '';
 	input2.value = '';
 
-	document.getElementsByClassName('floor-container')[0].innerHTML = "";
-	document.getElementsByClassName('lift-container')[0].innerHTML = "";
-}
+	document.getElementsByClassName('floor-container')[0].innerHTML = '';
+	document.getElementsByClassName('lift-container')[0].innerHTML = '';
+};
 
 let buildLayout = (floor, lift) => {
 	document.getElementsByClassName('title')[0].style.display = 'none';
@@ -103,7 +104,10 @@ let findClosestLift = (floorToServe, liftArray) => {
 			}
 		}
 	}
-	console.log(`Closes lift to serve floor ${floorToServe} is Lift No. ${closestLiftNo}`)
+	if (closestLiftNo)
+		console.log(
+			`Closes lift to serve floor ${floorToServe} is Lift No. ${closestLiftNo}`,
+		);
 	return closestLiftNo;
 };
 
@@ -131,15 +135,17 @@ let moveLift = (closestLift, floorToServe, liftArray) => {
 
 	let deltaPosn = (currFloor - 1) * -100 + dist * -100;
 
-
 	liftToMove.setAttribute('status', `busy`);
 	liftToMove.style.transition = `transform ${Math.abs(dist) * 2}s ease-in-out`;
 	liftToMove.style.transform = `translateY(${deltaPosn}px)`;
 	liftToMove.setAttribute('currFloor', `${floorToServe}`);
 
-	setTimeout(() => {
-		openDoor(liftToMove);
-	}, Math.abs(dist) * 2000);
+	setTimeout(
+		() => {
+			openDoor(liftToMove);
+		},
+		Math.abs(dist) * 2000,
+	);
 
 	setTimeout(
 		() => {
@@ -152,9 +158,8 @@ let moveLift = (closestLift, floorToServe, liftArray) => {
 		() => {
 			liftToMove.setAttribute('status', 'free');
 		},
-		(Math.abs(dist) * 2000) + 5000,
+		Math.abs(dist) * 2000 + 5000,
 	);
-
 };
 setInterval(() => {
 	if (taskQ.length != 0) {
@@ -162,7 +167,9 @@ setInterval(() => {
 		let liftArray = document.querySelectorAll('.lift');
 
 		let closestLiftNo = findClosestLift(floorToServe, liftArray);
-		moveLift(closestLiftNo, floorToServe, liftArray);
-		taskQ.shift();
+		if (closestLiftNo) {
+			moveLift(closestLiftNo, floorToServe, liftArray);
+			taskQ.shift();
+		}
 	}
 }, 100);
