@@ -9,10 +9,10 @@ let validate = (f, l) => {
 		return false;
 	} else if (liftVal > floorVal) alert('Lifts should be less than Floors');
 	else
-	buildLayout(floorVal, liftVal);
+		buildLayout(floorVal, liftVal);
 };
 
-let reset = () =>{
+let reset = () => {
 	document.getElementsByClassName('title')[0].style.display = 'block';
 	document.getElementsByClassName('form')[0].style.display = 'block';
 	document.getElementsByClassName('simulation')[0].style.display = 'none';
@@ -21,8 +21,8 @@ let reset = () =>{
 	let input1 = document.getElementsByClassName('floorInput')[0];
 	let input2 = document.getElementsByClassName('liftInput')[0];
 	input1.value = '';
-	input2.value = ''; 
-	
+	input2.value = '';
+
 	document.getElementsByClassName('floor-container')[0].innerHTML = "";
 	document.getElementsByClassName('lift-container')[0].innerHTML = "";
 }
@@ -49,7 +49,6 @@ let buildLayout = (floor, lift) => {
 		upBtn.setAttribute('floorNo', `${floor - i + 1}`);
 		upBtn.addEventListener('click', (e) => {
 			taskQ.push(e.target.getAttribute('floorNo'));
-			console.log(`${e.target.getAttribute('floorNo')} pushed into stack`);
 		});
 
 		let downBtn = document.createElement('btn');
@@ -104,6 +103,7 @@ let findClosestLift = (floorToServe, liftArray) => {
 			}
 		}
 	}
+	console.log(`Closes lift to serve floor ${floorToServe} is Lift No. ${closestLiftNo}`)
 	return closestLiftNo;
 };
 
@@ -131,14 +131,11 @@ let moveLift = (closestLift, floorToServe, liftArray) => {
 
 	let deltaPosn = (currFloor - 1) * -100 + dist * -100;
 
-	console.log(deltaPosn, currFloor);
 
-	setTimeout(() => {
-		liftToMove.setAttribute('status', `busy`);
-		liftToMove.style.transition = `transform ${Math.abs(dist) * 2}s ease-in-out`;
-		liftToMove.style.transform = `translateY(${deltaPosn}px)`;
-		liftToMove.setAttribute('currFloor', `${floorToServe}`);
-	}, 0);
+	liftToMove.setAttribute('status', `busy`);
+	liftToMove.style.transition = `transform ${Math.abs(dist) * 2}s ease-in-out`;
+	liftToMove.style.transform = `translateY(${deltaPosn}px)`;
+	liftToMove.setAttribute('currFloor', `${floorToServe}`);
 
 	setTimeout(() => {
 		openDoor(liftToMove);
@@ -158,7 +155,6 @@ let moveLift = (closestLift, floorToServe, liftArray) => {
 		(Math.abs(dist) * 2000) + 5000,
 	);
 
-	console.log('lift moved');
 };
 setInterval(() => {
 	if (taskQ.length != 0) {
