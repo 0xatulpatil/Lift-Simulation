@@ -4,7 +4,7 @@ let validate = ( ) => {
 	let floorVal = document.getElementsByClassName('floorInput')[0].value;
 	let liftVal = document.getElementsByClassName('liftInput')[0].value;
 
-	if (floorVal < 3 || liftVal < 3 || floorVal > 7 || liftVal > 7) {
+	if (floorVal < 3 || liftVal < 3 || floorVal > 9 || liftVal > 9) {
 		alert(
 			'Floor and Lifts should be in the range (3, 7), either floor or lift input is not valid',
 		);
